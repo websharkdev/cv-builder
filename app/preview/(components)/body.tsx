@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { details } from "./data";
-import { PEducation, PSkills, PWorks } from './index';
+import { PEducation, PPetProjects, PSkills, PWorks } from './index';
 
 const Body = () => {
     return (
@@ -37,6 +37,7 @@ const Body = () => {
                 <PEducation education={details.education} languages={details.languages} />
             </div>
             <PWorks data={details.work_experience} />
+            <PPetProjects data={details.pet_projects} />
         </div>
     )
 }

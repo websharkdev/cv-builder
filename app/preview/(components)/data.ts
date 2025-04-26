@@ -351,4 +351,27 @@ export const details = {
             ]
         },
     ],
+    pet_projects: [
+        {
+            title: "Portfolio",
+            link: "https://bortnytskyi.vercel.app/",
+            code: "https://github.com/websharkdev/nefflix-clone",
+            achievements: [
+                "Lighthouse 100 points",
+                'Smooth animations using Framer Motion',
+                'Responsive design for all devices',
+                'Clean and minimal design'
+            ],
+            stack: [
+                'Next.js',
+                'React.js',
+                'TypeScript',
+                'Tailwind CSS',
+                'Framer Motion',
+                'Three.js',
+                'Radix UI',
+                'Shadcn UI',
+            ]
+        }
+    ]
 }
