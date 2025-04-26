@@ -1,19 +1,7 @@
+import { Details } from "@/types/pages/data.types";
 import { memo } from "react";
 
-type Props = {
-    skills: {
-        title: string;
-        items: string[];
-        sub?: {
-            title: string;
-            items: string[];
-        }[];
-    }[]
-}
-
-const PSkills = ({
-    skills
-}: Props) => {
+const PSkills = ({ skills }: { skills: Details['skills'] }) => {
     return (<ul className="space-y-2.5">
         {skills.map((skill, index) => (
             <li key={`details-skills--global-${skill.title}-${index}`} className="grid grid-cols-1 gap-2.5">

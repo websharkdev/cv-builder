@@ -29,7 +29,7 @@ const Body = () => {
                 <p className="text-sm text-gray-600 hyphens-auto font-normal text-pretty">{details.summary}</p>
             </div>
 
-            <div className="col-span-4 grid grid-cols-1 gap-2.5 border-b border-gray-300 pb-5">
+            <div className="col-span-4 grid grid-cols-1 gap- 2.5 border-b border-gray-300 pb-5">
                 <h3 className="text-xl font-semibold text-pretty">Skills:</h3>
                 <PSkills skills={details.skills} />
             </div>
