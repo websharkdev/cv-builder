@@ -12,6 +12,8 @@ export const details = {
             href: "mailto:alexey.bortnytskyi@gmail.com",
             label: "alexey.bortnytskyi@gmail.com",
         },
+    ],
+    socials: [
         {
             href: "https://github.com/websharkdev",
             label: "GitHub",
@@ -21,7 +23,7 @@ export const details = {
             label: "LinkedIn",
         },
     ],
-    summary: "Creative Frontend Engineer with over 8 years of experience designing and building dynamic, user-centric web applications. Expert in optimizing performance and delivering intuitive UI/UX, with a proven track record on high-impact projects. Began coding at 14, pivoting to freelancing after early career hurdles, then transitioning to full-time roles since 18, where I’ve driven scalable, high-performance solutions. My adaptability and problem-solving skills, sharpened through diverse freelance work, now propel my passion for contributing to innovative, long-term projects.",
+    summary: "Proactive Frontend Engineer with 8+ years of experience in fast-paced environments, delivering high-impact web applications. Proven ability to drive significant performance gains and enhance user experience across various projects. Adaptable and proficient in a wide range of modern frontend technologies. Seeking a challenging role to contribute to innovative, long-term projects.",
     skills: [
         {
             title: 'Frontend',
@@ -121,7 +123,7 @@ export const details = {
                         'PostgreSQL',
                         'MySQL',
                         'SQLite',
-                        'Redis (Familiar)',
+                        'Redis',
                     ]
                 },
                 {
@@ -164,7 +166,7 @@ export const details = {
                 'Vercel',
                 'Netlify',
                 'Railway',
-                'AWS (Familiar)',
+                'AWS',
             ]
         },
         {

@@ -52,6 +52,7 @@ export type Details = {
     address: string;
     summary: string;
     contacts: DContactItem[];
+    socials: DContactItem[];
     skills: DSkillItem[];
     education: DEducation;
     languages: string[];
