@@ -8,7 +8,7 @@ import { Fragment } from "react";
 const Body = () => {
     return (
         <div className="max-w-4xl mx-auto grid grid-cols-6 gap-5">
-            <div className="flex col-span-full w-full items-end justify-between">
+            <div className="flex col-span-full w-full items-end justify-between pt-5">
                 <div className="grid grid-cols-1 gap-1">
                     <h1 className="text-base font-bold text-pretty">{details.name}</h1>
                     <h2 className="text-base font-semibold text-pretty">{details.title}</h2>
@@ -17,7 +17,7 @@ const Body = () => {
                 <div className="grid grid-cols-1 text-right">
                     <ul>
                         {details.contacts.map((contact, index) => (
-                            <li key={index} className="flex items-center justify-end">
+                            <li key={`details-contacts-${index}`} className="flex items-center justify-end h-5 py-0">
                                 <Button asChild variant="link" size="sm" className="text-pretty text-xs">
                                     <Link href={contact.href}>
                                         <span>{contact.label}</span>
@@ -27,10 +27,10 @@ const Body = () => {
                         ))}
                     </ul>
 
-                    <div className="flex items-center justify-end gap-2">
+                    <div className="flex items-center justify-end">
                         {details.socials.map((social, index) => (
-                            <Fragment>
-                                <Button key={index} asChild variant="link" size="sm" className="text-pretty text-xs">
+                            <Fragment key={`details-socials-${index}`}>
+                                <Button asChild variant="link" size="sm" className="text-pretty text-xs">
                                     <Link href={social.href}>
                                         <span>{social.label}</span>
                                     </Link>
