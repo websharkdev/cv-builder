@@ -1,24 +1,11 @@
 "use client";
 
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, UseFormReturn } from "react-hook-form";
 import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { BIOSchema, CVSchema } from "../(config)";
-
-import { Button } from "@/components/ui/button";
-import {
-    Form,
-    FormControl,
-    FormDescription,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { BSection } from "@/components/custom/(block)";
-import { DForm } from "@/components/custom/(form)";
+import { CVSchema } from "../(config)";
 import { ISOCountries } from "@/actions/(data)/ico-countries.actions";
+import { DForm } from "@/components/custom/(form)";
 
 const Body = () => {
     const form = useForm<z.infer<typeof CVSchema>>({
