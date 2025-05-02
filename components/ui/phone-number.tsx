@@ -60,7 +60,7 @@ export const PhoneNumber = ({
     );
 };
 
-import { ArrowUpDown, Check } from 'lucide-react';
+import { ArrowUpDown, Check, ChevronsUpDown } from 'lucide-react';
 import * as React from 'react';
 
 import {
@@ -113,7 +113,7 @@ function ComboboxCountryInput<T extends Option>({
                     className="h-[42px] border border-input dark:bg-background dark:hover:bg-input"
                 >
                     {value.value ? isoToEmoji(value.value) : 'Select country...'}
-                    <ArrowUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                    <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                 </Button>
             </PopoverTrigger>
             <PopoverContent className="w-[200px] p-2 pb-0" align="start">
