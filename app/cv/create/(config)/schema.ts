@@ -13,6 +13,13 @@ export const BIOSchema = z.object({
     website: z.string().url({ message: 'Invalid URL' }).optional(),
 })
 
+export const SkillsSchema = z.object({
+    category: z.string().min(1, { message: 'Category is required' }),
+    group: z.string().min(1, { message: 'Group is required' }),
+    skills: z.array(z.string().min(1, { message: 'Skill is required' })),
+})
+
+
 export const CVSchema = z.object({
     bio: BIOSchema,
 })
