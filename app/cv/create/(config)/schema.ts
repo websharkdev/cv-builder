@@ -1,5 +1,10 @@
 import { z } from 'zod';
 
+export const ItemSchema = z.object({
+    label: z.string().min(1, { message: 'Label is required' }),
+    value: z.string().min(1, { message: 'Value is required' }),
+})
+
 export const BIOSchema = z.object({
     name: z.string().min(1, { message: 'Name is required' }),
     surname: z.string().min(1, { message: 'Surname is required' }),
@@ -14,12 +19,13 @@ export const BIOSchema = z.object({
 })
 
 export const SkillsSchema = z.object({
-    category: z.string().min(1, { message: 'Category is required' }),
+    category: z.array(ItemSchema).min(1, { message: 'Category is required' }),
     group: z.string().min(1, { message: 'Group is required' }),
-    skills: z.array(z.string().min(1, { message: 'Skill is required' })),
+    skills: z.array(ItemSchema).min(1, { message: 'Skills are required' }),
 })
 
 
 export const CVSchema = z.object({
     bio: BIOSchema,
+    skills: z.array(SkillsSchema),
 })

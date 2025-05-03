@@ -1,11 +1,11 @@
 "use client";
 
+import { ISOCountries } from "@/actions/(data)/ico-countries.actions";
+import { DForm } from "@/components/custom/(form)";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, UseFormReturn } from "react-hook-form";
 import { z } from "zod";
 import { CVSchema } from "../(config)";
-import { ISOCountries } from "@/actions/(data)/ico-countries.actions";
-import { DForm } from "@/components/custom/(form)";
 import CSkills from "./skills.create";
 
 const Body = () => {
@@ -24,6 +24,7 @@ const Body = () => {
                 linkedin: "",
                 website: "",
             },
+            skills: []
         },
     });
 
@@ -216,7 +217,7 @@ const Body = () => {
                 className: "w-full max-w-40 hover:cursor-pointer mt-5",
             }}
         >
-            <CSkills />
+            <CSkills form={form as unknown as UseFormReturn} />
         </DForm>
     );
 };

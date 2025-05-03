@@ -1,65 +1,55 @@
 'use client'
 
+import { BSection } from "@/components/custom/(block)"
+import { DForm } from "@/components/custom/(form)"
+import { Button } from "@/components/ui/button"
 import {
     Popover,
     PopoverContent,
     PopoverTrigger,
 } from "@/components/ui/popover"
-import { BSection } from "@/components/custom/(block)"
-import { Button } from "@/components/ui/button"
-import { Plus } from "lucide-react"
 import { IconSizeDefault, IconStrokeWidthDefault } from "@/lib/constants"
-import { DForm } from "@/components/custom/(form)"
-import { SkillsSchema } from "../(config)/schema"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm, UseFormReturn } from "react-hook-form"
+import { Plus } from "lucide-react"
+import { useFieldArray, useForm, UseFormReturn } from "react-hook-form"
 import { z } from "zod"
+import { SkillsSchema } from "../(config)/schema"
+import { useCallback, useMemo } from "react"
+import { categories } from "@/actions/(data)/categories.actions"
 
-type Props = {}
+type Props = {
+    form: UseFormReturn
+}
 
 
-const CSkillsForm = () => {
-
+const CSkillsForm = ({ onCreate }: { onCreate: (value: z.infer<typeof SkillsSchema>) => void }) => {
     const form = useForm<z.infer<typeof SkillsSchema>>({
         resolver: zodResolver(SkillsSchema),
         defaultValues: {
-            category: '',
+            category: [],
             group: '',
             skills: []
         },
     });
 
-    const onSubmit = (values: z.infer<typeof SkillsSchema>) => {
-        console.log(values);
-    };
-
     return (
         <DForm
-
             form={form as unknown as UseFormReturn}
             actions={{
-                onSubmit: (values) => onSubmit(values as z.infer<typeof SkillsSchema>),
+                onSubmit: (values) => onCreate(values as z.infer<typeof SkillsSchema>),
             }}
             status="success"
             error={{} as Error}
-            classNames={{
-                container: "max-w-4xl mx-auto p-3.5 bg-gray-50/50 rounded-md my-5",
-                actions: "flex justify-center items-center",
-                content: "grid grid-cols-6 gap-2.5",
-            }}
             fields={[
                 {
                     name: "category",
                     title: "Category",
-                    type: "input",
-                    input: {
-                        type: "text",
-                        placeholder: "Category",
-                        className: "w-full",
-                    },
-                    classNames: {
-                        container: "col-span-3",
-                    },
+                    type: "multiselect",
+                    multiselect: {
+                        data: categories,
+                        placeholder: 'Category',
+                        create: true
+                    }
                 },
                 {
                     name: "group",
@@ -70,37 +60,44 @@ const CSkillsForm = () => {
                         placeholder: "Group",
                         className: "w-full",
                     },
-                    classNames: {
-                        container: "col-span-3",
-                    },
                 },
-
                 {
                     name: "skills",
                     title: "Skills",
-                    type: "input",
-                    input: {
-                        type: "text",
-                        placeholder: "Skills (comma separated)",
-                        className: "w-full col-span-6",
-                    },
+                    type: "multiselect",
+                    multiselect: {
+                        data: [],
+                        placeholder: 'Skills',
+                        create: true
+                    }
                 }
-
             ]}
             submit={{
                 "aria-label": "Create CV BUTTON",
-                children: "Create CV",
-                className: "w-full max-w-40 hover:cursor-pointer mt-5",
+                children: "Add skill",
+                className: "w-full hover:cursor-pointer",
             }}
         />
     )
 }
 
-const CSkills = ({ }: Props) => {
+const CSkills = ({ form }: Props) => {
+    const { fields, append, remove } = useFieldArray({
+        control: form.control,
+        name: 'skills',
+    });
+
+
+    const grouped = useMemo(() => {
+        return fields.map((acc, field) => {
+
+
+        })
+    }, [fields])
+
     return (
         <BSection title="Skills">
             <div className="flex justify-between items-center gap-2.5">
-
                 <Popover>
                     <PopoverTrigger asChild>
                         <Button>
@@ -108,10 +105,13 @@ const CSkills = ({ }: Props) => {
                             <span>Create Skill</span>
                         </Button>
                     </PopoverTrigger>
-                    <PopoverContent align="start">Place content for the popover here.</PopoverContent>
+                    <PopoverContent align="start"><CSkillsForm onCreate={append} /></PopoverContent>
                 </Popover>
             </div>
 
+            <div className="grid grid-cols-2 gap-4 mt-5">
+
+            </div>
         </BSection>
     )
 }
