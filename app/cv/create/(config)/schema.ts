@@ -19,7 +19,7 @@ export const BIOSchema = z.object({
 })
 
 export const SkillsSchema = z.object({
-    category: z.array(ItemSchema).min(1, { message: 'Category is required' }),
+    category: z.string().min(1, { message: 'Category is required' }),
     group: z.string().min(1, { message: 'Group is required' }),
     skills: z.array(ItemSchema).min(1, { message: 'Skills are required' }),
 })
