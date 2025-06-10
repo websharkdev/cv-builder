@@ -1,5 +1,6 @@
 'use client'
 
+import { categories } from "@/actions/(data)/categories.actions"
 import { BSection } from "@/components/custom/(block)"
 import { DForm } from "@/components/custom/(form)"
 import { Button } from "@/components/ui/button"
@@ -14,8 +15,6 @@ import { Plus } from "lucide-react"
 import { useFieldArray, useForm, UseFormReturn } from "react-hook-form"
 import { z } from "zod"
 import { SkillsSchema } from "../(config)/schema"
-import { useCallback, useMemo } from "react"
-import { categories } from "@/actions/(data)/categories.actions"
 
 type Props = {
     form: UseFormReturn
@@ -26,7 +25,7 @@ const CSkillsForm = ({ onCreate }: { onCreate: (value: z.infer<typeof SkillsSche
     const form = useForm<z.infer<typeof SkillsSchema>>({
         resolver: zodResolver(SkillsSchema),
         defaultValues: {
-            category: [],
+            category: '',
             group: '',
             skills: []
         },
@@ -44,11 +43,12 @@ const CSkillsForm = ({ onCreate }: { onCreate: (value: z.infer<typeof SkillsSche
                 {
                     name: "category",
                     title: "Category",
-                    type: "multiselect",
-                    multiselect: {
+                    type: "select",
+                    select: {
                         data: categories,
-                        placeholder: 'Category',
-                        create: true
+                        classNames: {
+                            action: "w-full placeholder:text-gray-400",
+                        },
                     }
                 },
                 {
@@ -87,14 +87,6 @@ const CSkills = ({ form }: Props) => {
         name: 'skills',
     });
 
-
-    const grouped = useMemo(() => {
-        return fields.map((acc, field) => {
-
-
-        })
-    }, [fields])
-
     return (
         <BSection title="Skills">
             <div className="flex justify-between items-center gap-2.5">
@@ -110,7 +102,16 @@ const CSkills = ({ form }: Props) => {
             </div>
 
             <div className="grid grid-cols-2 gap-4 mt-5">
+                {fields.map((field, index) => {
 
+                    const { category, group, skills } = field as unknown as z.infer<typeof SkillsSchema>
+
+                    return (
+                        <div key={`create-skills--fields-${field.id}-${index}`} className="col-span-full border border-slate-200 w-full p-2.5 rounded-md flex flex-col gap-2.5">
+                            <h6>{category}</h6>
+                        </div>
+                    )
+                })}
             </div>
         </BSection>
     )
